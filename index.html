@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ooo eeeee ooo!</title>
+        <style>
+            @font-face {
+              font-family: Minecraft;
+              src: url(Minecraft.ttf);
+            }
+        
+            body {
+                font-family: Minecraft, sans-serif;
+            }
+
+            #main-video {
+                transform: translate(-50%, -50%);
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                min-width: 100%;
+                min-height: 100%;
+                object-fit: cover;
+            }
+            #autoplay-modal {
+                position: fixed; width: 100vw; height: 100vh; overflow: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background-color: rgba(0,0,0,0.5);
+                cursor: pointer;
+            }
+            #autoplay-modal-inner {
+                height: 100px;
+                color: white;
+                text-align: center;
+                font-size: 20pt;
+            }
+        </style>
+    </head>
+    <body style="margin: 0">
+        <div style="position: fixed; width: 100vw; height: 100vh; overflow: hidden">
+            <video autoplay muted loop id="main-video">
+               <source src="./oooeeeeeooo.mp4" type="video/mp4">
+            </video>
+        </div>
+        <div id="autoplay-modal">
+            <div id="autoplay-modal-inner">
+                Click to play
+            </div>
+        </div>
+        <div>
+        </div>
+        <script>
+            const apmodal = document.getElementById("autoplay-modal");
+            const video = document.getElementById("main-video");
+            apmodal.onclick = function () {
+                console.log("ooo eee ooo!");
+                apmodal.remove();
+                video.currentTime = 0;
+                video.muted = false;
+            };
+        </script>
+    </body>
+</html>
