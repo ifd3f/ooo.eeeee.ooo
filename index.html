@@ -35,10 +35,29 @@
                 text-align: center;
                 font-size: 20pt;
             }
+            #credits {
+                position: fixed;
+                bottom: 0;
+                right: 0;
+            }
+            #credits p {
+                margin-top: 5px;
+                margin-bottom: 5px;
+            }
+            #credits a {
+                color: white;
+            }
+
+            .after-modal #autoplay-modal {
+                display: none;
+            }
+            .after-modal #credits {
+                mix-blend-mode: difference;
+            }
         </style>
     </head>
     <body style="margin: 0">
-        <div style="position: fixed; width: 100vw; height: 100vh; overflow: hidden">
+        <div style="position: fixed; width: 100vw; height: 100vh; overflow: hidden; background-color: white">
             <video autoplay muted loop id="main-video">
                <source src="./oooeeeeeooo.mp4" type="video/mp4">
             </video>
@@ -48,14 +67,16 @@
                 Click to play
             </div>
         </div>
-        <div>
+        <div id="credits">
+            <p><a href="https://www.youtube.com/watch?v=2oa5WCUpwD8">video</a></p>
+            <p><a href="https://github.com/ifd3f/ooo.eeeee.ooo">code</a></p>
         </div>
         <script>
             const apmodal = document.getElementById("autoplay-modal");
             const video = document.getElementById("main-video");
             apmodal.onclick = function () {
                 console.log("ooo eee ooo!");
-                apmodal.remove();
+                document.body.className = "after-modal";
                 video.currentTime = 0;
                 video.muted = false;
             };
