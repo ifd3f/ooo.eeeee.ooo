@@ -1,0 +1,19 @@
+name: "CI"
+
+on:
+  push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: cachix/install-nix-action@v22
+        with:
+          # enable nixos tests
+          extra_nix_config: "system-features = nixos-test benchmark big-parallel kvm"
+          github_access_token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Building package
+        run: nix flake check
