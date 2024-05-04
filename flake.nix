@@ -13,9 +13,21 @@
       in {
         packages.default = naersk-lib.buildPackage ./.;
         devShells.default = with pkgs;
-          mkShell {
-            buildInputs =
-              [ cargo rustc rustfmt pre-commit rustPackages.clippy ];
+          pkgs.clangStdenv.mkDerivation {
+            name = "shell";
+            buildInputs = [
+              cargo
+              rustc
+              rustfmt
+              pre-commit
+              rustPackages.clippy
+              pkg-config
+              
+              # libraries for mediatoascii to install
+              opencv
+              ffmpeg
+            ];
+            LIBCLANG_PATH = "${llvmPackages.libclang.lib}/lib";
             RUST_SRC_PATH = rustPlatform.rustLibSrc;
           };
       });
